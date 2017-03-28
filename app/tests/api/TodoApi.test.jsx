@@ -4,6 +4,7 @@ const TodoAPI = require('TodoAPI');
 describe('TodoAPI', () => {
   beforeEach(() => {
     localStorage.removeItem('todos');
+    localStorage.removeItem('showCompleted');
   });
 
   describe('setItems', () => {
@@ -91,6 +92,35 @@ describe('TodoAPI', () => {
       ];
 
       expect(filteredTodos).toEqual(sortedData);
+    });
+  });
+
+  describe('getShowCompleted', () => {
+    it('should return false if no data was set previously', () => {
+      let showCompleted = TodoAPI.getShowCompleted();
+      expect(showCompleted).toEqual(false);
+    });
+
+    it('should return true if it was set previously', () => {
+      localStorage.setItem('showCompleted', true);
+      let showCompleted = TodoAPI.getShowCompleted();
+      expect(showCompleted).toEqual(true);
+    });
+  });
+
+  describe('setShowCompleted', () => {
+    it('should save show completed to local storage', () => {
+      let showCompleted = TodoAPI.setShowCompleted(true);
+      expect(localStorage.getItem('showCompleted')).toEqual('true');
+    });
+
+    it('should return value passed to it', () => {
+      let showCompleted = TodoAPI.setShowCompleted(false);
+      expect(showCompleted).toEqual(false);
+    });
+
+    it('should not return anything when non-boolean value passed', () => {
+      expect(TodoAPI.setShowCompleted('wrong data')).toBeA('undefined');
     });
   });
 });

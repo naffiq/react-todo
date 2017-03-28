@@ -10,7 +10,7 @@ import TodoAPI from 'TodoAPI';
 const TodoApp = React.createClass({
   getInitialState: function () {
     return {
-      showCompleted: false,
+      showCompleted: TodoAPI.getShowCompleted(),
       searchText: '',
       todos: TodoAPI.getTodos(),
     }
@@ -18,6 +18,7 @@ const TodoApp = React.createClass({
 
   componentDidUpdate: function () {
     TodoAPI.setTodos(this.state.todos);
+    TodoAPI.setShowCompleted(this.state.showCompleted);
   },
 
   handleAddTodo: function (text) {
@@ -52,7 +53,7 @@ const TodoApp = React.createClass({
           <div className="medium-8 large-6 small-centered columns">
             <h1>Todo app</h1>
 
-            <TodoSearch onSearch={this.handleSearch}/>
+            <TodoSearch onSearch={this.handleSearch} showCompleted={showCompleted}/>
             <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
             <AddTodo onAddTodo={this.handleAddTodo}/>
           </div>

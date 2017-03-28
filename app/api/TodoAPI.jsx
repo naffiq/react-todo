@@ -1,5 +1,20 @@
 import $ from 'jquery';
 
+if (!String.prototype.includes) {
+  String.prototype.includes = function(search, start) {
+    'use strict';
+    if (typeof start !== 'number') {
+      start = 0;
+    }
+
+    if (start + search.length > this.length) {
+      return false;
+    } else {
+      return this.indexOf(search, start) !== -1;
+    }
+  };
+}
+
 const TodoAPI = {
   setTodos: function (todos) {
     if ($.isArray(todos)) {
@@ -41,6 +56,21 @@ const TodoAPI = {
     });
 
     return filteredTodos;
+  },
+
+  getShowCompleted: function () {
+    let showCompleted = localStorage.getItem('showCompleted');
+    if (showCompleted == 'true' || showCompleted == 'false') {
+      return showCompleted == 'true';
+    }
+    return false;
+  },
+
+  setShowCompleted: function (showCompleted) {
+    if (typeof showCompleted === 'boolean') {
+      localStorage.setItem('showCompleted', showCompleted);
+      return this.getShowCompleted();
+    }
   }
 };
 
