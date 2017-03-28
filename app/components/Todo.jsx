@@ -1,12 +1,14 @@
 import React from 'react';
 
 const Todo = React.createClass({
-
   render: function () {
-    let {count, text} = this.props;
+    let {id, count, text, completed} = this.props;
     return (
-      <div>
-        {count}. {text}
+      <div >
+        <label>
+          <input type="checkbox" checked={completed} onChange={ () => { this.props.onToggle(id) } } ref="completed"/>
+          {count}. {text}
+        </label>
       </div>
     );
   }
