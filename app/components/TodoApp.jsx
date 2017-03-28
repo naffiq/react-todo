@@ -39,13 +39,15 @@ const TodoApp = React.createClass({
   },
 
   handleToggle: function (id) {
-    this.setState({todos: this.state.todos.map((todo) => {
-      if (id === todo.id) {
-        todo.completed = !todo.completed;
-        todo.completedAt = todo.completed ? moment().unix() : false;
-      }
-      return todo;
-    })});
+    this.setState({
+      todos: this.state.todos.map((todo) => {
+        if (id === todo.id) {
+          todo.completed = !todo.completed;
+          todo.completedAt = todo.completed ? moment().unix() : false;
+        }
+        return todo;
+      })
+    });
   },
 
   render: function () {
@@ -54,13 +56,15 @@ const TodoApp = React.createClass({
 
     return (
       <div>
-        <div className="row">
-          <div className="medium-8 large-6 small-centered columns">
-            <h1>Todo app</h1>
+        <h1 className="page-title">Todo app</h1>
 
-            <TodoSearch onSearch={this.handleSearch} showCompleted={showCompleted}/>
-            <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
-            <AddTodo onAddTodo={this.handleAddTodo}/>
+        <div className="row">
+          <div className="medium-6 large-5 small-11 small-centered column">
+            <div className="container">
+              <TodoSearch onSearch={this.handleSearch} showCompleted={showCompleted}/>
+              <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
+              <AddTodo onAddTodo={this.handleAddTodo}/>
+            </div>
           </div>
         </div>
       </div>

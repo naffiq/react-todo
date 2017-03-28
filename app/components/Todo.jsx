@@ -6,16 +6,16 @@ const Todo = React.createClass({
     let {id, count, text, completed, createdAt, completedAt} = this.props;
 
     let renderDate = () => {
-      let createdFormatted = 'Created: ' + moment(createdAt, 'X').format('MMMM Do, YYYY @ HH:mm');
-      let completedFormatted = '';
       if (completed) {
-        completedFormatted = ' | Completed: ' + moment(completedAt, 'X').format('MMMM Do YYYY @ HH:mm')
+        return  'Completed: ' + moment(completedAt, 'X').format('MMMM Do YYYY @ HH:mm')
       }
-      return createdFormatted + completedFormatted;
+      return 'Created: ' + moment(createdAt, 'X').format('MMMM Do, YYYY @ HH:mm');
     };
 
+    let todoClassName = completed ? 'todo todo-completed' : 'todo';
+
     return (
-      <div >
+      <div className={todoClassName}>
         <label>
           <input type="checkbox" checked={completed} onChange={ () => { this.props.onToggle(id) } } ref="completed"/>
           {count}. {text}

@@ -1,0 +1,20 @@
+.todo {
+  label {
+    cursor: pointer;
+  }
+  small {
+    display: block;
+    width: 100%;
+    padding-left: 1.4rem;
+    margin-top: -.6rem;
+    font-size: .8rem;
+    color: $light-color;
+  }
+  &.todo-completed {
+    text-decoration: line-through;
+    color: $light-color;
+  }
+
+  padding: 1rem;
+  transition: background .3s ease;
+}
