@@ -1,8 +1,9 @@
-# React + Foundation Boilerplate
+# React Todo App
 
-[![Build Status](https://travis-ci.org/naffiq/react-foundation-boilerplate.svg?branch=master)](https://travis-ci.org/naffiq/react-foundation-boilerplate)
+[![Build Status](https://travis-ci.org/naffiq/react-todo.svg?branch=master)](https://travis-ci.org/naffiq/react-todo)
+### Work in progress
+[DEMO](https://naffiq-todo.herokuapp.com/)
 
-Includes react router, Foundation CSS framework, SASS loader and tests boilerplate with karma, mocha and expect
 
 ## Running
 
