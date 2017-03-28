@@ -1,5 +1,6 @@
 import React from 'react';
 import uuid from 'node-uuid';
+import moment from 'moment';
 
 import TodoList from 'TodoList';
 import TodoSearch from 'TodoSearch';
@@ -22,7 +23,10 @@ const TodoApp = React.createClass({
   },
 
   handleAddTodo: function (text) {
-    let newTodo = {id: uuid(), text: text, completed: false};
+    let newTodo = {
+      id: uuid(), text: text, completed: false,
+      createdAt: moment().unix(), completedAt: false
+    };
 
     this.setState({todos: [...this.state.todos, newTodo]});
   },
@@ -38,6 +42,7 @@ const TodoApp = React.createClass({
     this.setState({todos: this.state.todos.map((todo) => {
       if (id === todo.id) {
         todo.completed = !todo.completed;
+        todo.completedAt = todo.completed ? moment().unix() : false;
       }
       return todo;
     })});
