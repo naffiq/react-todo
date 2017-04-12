@@ -9,7 +9,7 @@ describe('Reducers', () => {
         type: 'SET_SEARCH_TEXT',
         searchText: 'search'
       };
-      const res = reducers.searchTextReducer(df(''), df(action));
+      const res = reducers.searchTextReducer('', df(action));
 
       expect(res).toEqual(action.searchText);
     });
@@ -20,11 +20,11 @@ describe('Reducers', () => {
       const action = {
         type: 'TOGGLE_SHOW_COMPLETED',
       };
-      let res = reducers.showCompletedReducer(df(false), df(action));
+      let res = reducers.showCompletedReducer(false, df(action));
 
       expect(res).toEqual(true);
 
-      res = reducers.showCompletedReducer(df(true), df(action));
+      res = reducers.showCompletedReducer(true, df(action));
       expect(res).toEqual(false);
     });
   });

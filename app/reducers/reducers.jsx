@@ -38,7 +38,9 @@ export const todosReducer = (state = [], action) => {
         if (todo.id === action.id) {
           const newCompleted = !todo.completed;
           return {
-            ...todo,
+            id: todo.id,
+            text: todo.text,
+            createdAt: todo.createdAt,
             completed: newCompleted,
             completedAt: newCompleted ? moment().unix() : undefined
           };
