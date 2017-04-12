@@ -1,4 +1,5 @@
 import moment from 'moment';
+import uuid from 'uuid';
 
 export const searchTextReducer = (state = '', action) => {
   switch (action.type) {
@@ -19,29 +20,32 @@ export const showCompletedReducer = (state = false, action) => {
   return state;
 };
 
-// let todoId = 1;
-// export const todoReducer = (state = [], action) => {
-//   switch (action.type) {
-//     case 'ADD_TODO':
-//       return [
-//         ...state,
-//         {
-//           id: todoId++,
-//           text: action.text,
-//           completed: false,
-//           completedAt: undefined,
-//           createdAt: moment().unix()
-//         }
-//       ];
-//     case 'TOGGLE_TODO':
-//       return state.map((todo) => {
-//         return todo.id === action.id ? {
-//           ...todo,
-//           completed: !todo.completed,
-//           completedAt: todo.completed ? undefined : moment().unix()
-//         } : todo;
-//       });
-//   }
-//
-//   return state;
-// };
+export const todosReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [
+        ...state,
+        {
+          id: uuid(),
+          text: action.text,
+          completed: false,
+          completedAt: undefined,
+          createdAt: moment().unix()
+        }
+      ];
+    case 'TOGGLE_TODO':
+      return state.map((todo) => {
+        if (todo.id === action.id) {
+          const newCompleted = !todo.completed;
+          return {
+            id: todo.id,
+            text: todo.text,
+            createdAt: todo.createdAt,
+            completed: newCompleted,
+            completedAt: newCompleted ? moment().unix() : undefined
+          };
+        }
+      });
+  }
+  return state;
+};
