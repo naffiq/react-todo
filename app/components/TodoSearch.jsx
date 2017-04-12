@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 const TodoSearch = React.createClass({
   propTypes: {
@@ -13,7 +14,7 @@ const TodoSearch = React.createClass({
   },
 
   render: function () {
-    let {showCompleted} = this.props;
+    let {showCompleted, dispatch} = this.props;
     return (
       <div className="container--header">
         <div>
