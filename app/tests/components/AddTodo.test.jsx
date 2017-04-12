@@ -4,27 +4,33 @@ import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import $ from 'jquery';
 
-import AddTodo from 'AddTodo';
+import {AddTodo} from 'AddTodo';
 
 describe('AddTodo', () => {
   it('should exist', () => {
     expect(AddTodo).toExist();
   });
 
-  it('should add todo if text is provided', () => {
+  it('should dispatch ADD_TODO if text is provided', () => {
     let spy = expect.createSpy();
-    let addTodo = TestUtils.renderIntoDocument(<AddTodo onAddTodo={spy} />);
+
+    let addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy} />);
     let $el = $(ReactDOM.findDOMNode(addTodo));
 
-    addTodo.refs.todoText.value = 'New todo item!';
+    const text = 'New todo item!';
+    addTodo.refs.todoText.value = text;
+    const action = {
+      type: 'ADD_TODO',
+      text
+    };
     TestUtils.Simulate.submit($el.find('form')[0]);
 
-    expect(spy).toHaveBeenCalledWith('New todo item!');
+    expect(spy).toHaveBeenCalledWith(action);
   });
 
-  it('should not add todo if text is not provided', () => {
+  it('should not dispatch ADD_TODO if text is not provided', () => {
     let spy = expect.createSpy();
-    let addTodo = TestUtils.renderIntoDocument(<AddTodo onAddTodo={spy} />);
+    let addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy} />);
     let $el = $(ReactDOM.findDOMNode(addTodo));
 
     addTodo.refs.todoText.value = '';
@@ -35,13 +41,19 @@ describe('AddTodo', () => {
 
   it('should clear input after submitting', () => {
     let spy = expect.createSpy();
-    let addTodo = TestUtils.renderIntoDocument(<AddTodo onAddTodo={spy} />);
+    let addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy} />);
     let $el = $(ReactDOM.findDOMNode(addTodo));
 
-    addTodo.refs.todoText.value = 'Whatever';
+    const text = 'Whatever';
+    addTodo.refs.todoText.value = text;
+    const action = {
+      type: 'ADD_TODO',
+      text
+    };
+    addTodo.refs.todoText.value = text;
     TestUtils.Simulate.submit($el.find('form')[0]);
 
-    expect(spy).toHaveBeenCalledWith('Whatever');
+    expect(spy).toHaveBeenCalledWith(action);
     expect(addTodo.refs.todoText.value).toBe('');
   });
 });

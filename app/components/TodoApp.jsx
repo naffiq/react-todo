@@ -22,15 +22,6 @@ const TodoApp = React.createClass({
     TodoAPI.setShowCompleted(this.state.showCompleted);
   },
 
-  handleAddTodo: function (text) {
-    let newTodo = {
-      id: uuid(), text: text, completed: false,
-      createdAt: moment().unix(), completedAt: false
-    };
-
-    this.setState({todos: [...this.state.todos, newTodo]});
-  },
-
   handleSearch: function (showCompleted, searchText) {
     this.setState({
       showCompleted: showCompleted,
@@ -51,7 +42,7 @@ const TodoApp = React.createClass({
             <div className="container">
               <TodoSearch onSearch={this.handleSearch} showCompleted={showCompleted}/>
               <TodoList/>
-              <AddTodo onAddTodo={this.handleAddTodo}/>
+              <AddTodo/>
             </div>
           </div>
         </div>
