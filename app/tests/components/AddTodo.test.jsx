@@ -5,6 +5,7 @@ import TestUtils from 'react-addons-test-utils';
 import $ from 'jquery';
 
 import {AddTodo} from 'AddTodo';
+import * as actions from 'actions';
 
 describe('AddTodo', () => {
   it('should exist', () => {
@@ -19,10 +20,7 @@ describe('AddTodo', () => {
 
     const text = 'New todo item!';
     addTodo.refs.todoText.value = text;
-    const action = {
-      type: 'ADD_TODO',
-      text
-    };
+    const action = actions.startAddTodo(text);
     TestUtils.Simulate.submit($el.find('form')[0]);
 
     expect(spy).toHaveBeenCalledWith(action);
@@ -46,10 +44,7 @@ describe('AddTodo', () => {
 
     const text = 'Whatever';
     addTodo.refs.todoText.value = text;
-    const action = {
-      type: 'ADD_TODO',
-      text
-    };
+    const action = actions.startAddTodo(text);
     addTodo.refs.todoText.value = text;
     TestUtils.Simulate.submit($el.find('form')[0]);
 

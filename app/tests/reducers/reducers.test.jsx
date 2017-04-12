@@ -33,11 +33,23 @@ describe('Reducers', () => {
     it('should add todo', () => {
       const action = {
         type: 'ADD_TODO',
-        text: 'Wash dishes'
+        todo: {
+          id: 1,
+          text: 'Cut Bridge\'s balls',
+          completed: false,
+          completedAt: undefined,
+          createdAt: 40
+        }
       };
       let res = reducers.todosReducer(df([]), df(action));
 
-      expect(res[0].text).toEqual(action.text);
+      expect(res[0]).toEqual({
+        id: 1,
+        text: 'Cut Bridge\'s balls',
+        completed: false,
+        completedAt: undefined,
+        createdAt: 40
+      });
     });
 
     it('should toggle todo', () => {
