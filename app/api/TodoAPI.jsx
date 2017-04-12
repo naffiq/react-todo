@@ -60,13 +60,14 @@ const TodoAPI = {
 
   getShowCompleted: function () {
     let showCompleted = localStorage.getItem('showCompleted');
-    if (showCompleted == 'true' || showCompleted == 'false') {
-      return showCompleted == 'true';
+    if (showCompleted === 'true' || showCompleted === 'false') {
+      return showCompleted === 'true';
     }
     return false;
   },
 
   setShowCompleted: function (showCompleted) {
+    console.log('Save showCompleted to local storage', showCompleted);
     if (typeof showCompleted === 'boolean') {
       localStorage.setItem('showCompleted', showCompleted);
       return this.getShowCompleted();

@@ -59,5 +59,24 @@ describe('Reducers', () => {
       expect(res[0].completed).toEqual(true);
       expect(res[0].completedAt).toNotEqual(undefined);
     });
+
+    it('should add existing todos', () => {
+      const todos = [
+        {
+          id: 1,
+          text: 'Cut Bridge\'s balls',
+          completed: false,
+          completedAt: undefined,
+          createdAt: 40
+        }
+      ];
+      const action = {
+        type: 'ADD_TODOS',
+        todos
+      };
+
+      let res = reducers.todosReducer(df([]), df(action));
+      expect(res).toEqual(todos);
+    })
   });
 });

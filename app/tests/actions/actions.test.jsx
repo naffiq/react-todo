@@ -2,7 +2,7 @@ import * as actions from 'actions';
 import expect from 'expect';
 
 describe('Actions', () => {
-  it ('should generate search text action', () => {
+  it('should generate search text action', () => {
     const action = {
       type: 'SET_SEARCH_TEXT',
       searchText: 'Some search text'
@@ -20,6 +20,25 @@ describe('Actions', () => {
     const res = actions.addTodo(action.text);
 
     expect(res).toEqual(action);
+  });
+
+  it('should generate add todos action object', () => {
+    const todos = [{
+      id: 1,
+      text: 'Go!',
+      completed: false,
+      completedAt: undefined,
+      createdAt: 123
+    }];
+
+    const action = {
+      type: 'ADD_TODOS',
+      todos
+    };
+    const res = actions.addTodos(todos);
+
+    expect(res).toEqual(action);
+
   });
 
   it('should generate toggle todo completed action', () => {
