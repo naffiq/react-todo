@@ -21,6 +21,7 @@ store.subscribe(() => {
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(actions.login(user.uid));
+    store.dispatch(actions.startAddTodos());
     hashHistory.push('/todos');
   } else {
     hashHistory.push('/');
@@ -32,7 +33,6 @@ if (store.getState().showCompleted !== initialShowCompleted) {
   store.dispatch(actions.toggleShowCompleted());
 }
 
-store.dispatch(actions.startAddTodos());
 
 $(document).foundation();
 
