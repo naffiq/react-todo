@@ -24,7 +24,7 @@ export const startAddTodo = (text) => {
       createdAt: moment().unix()
     };
 
-    var uid = getState().auth.uid;
+    const uid = getState().auth.uid;
     const todoRef = firebaseRef.child(`users/${uid}/todos`).push(todo);
 
     return todoRef.then(() => {

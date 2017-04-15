@@ -25,7 +25,7 @@ const TodoAPI = {
     });
 
     filteredTodos = filteredTodos.filter((todo) => {
-      return !searchText.length || todo.text.toLowerCase().includes(searchText)
+      return !searchText.length || todo.text.toLowerCase().includes(searchText.toLowerCase())
     });
 
     filteredTodos =filteredTodos.sort((todoA, todoB) => {
