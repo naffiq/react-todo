@@ -35,10 +35,11 @@ export const startAddTodo = (text) => {
   };
 };
 
-export const toggleTodo = (id) => {
+export const updateTodo = (id, updates) => {
   return {
-    type: 'TOGGLE_TODO',
-    id
+    type: 'UPDATE_TODO',
+    id,
+    updates
   }
 };
 
@@ -53,4 +54,18 @@ export const addTodos = (todos) => {
     type: 'ADD_TODOS',
     todos
   }
+};
+
+export const startToggleTodo = (id, completed) => {
+  return (dispatch, getState) => {
+    const updates = {
+      completed,
+      completedAt: completed ? moment().unix() : null
+    };
+    const todoRef = firebaseRef.child(`todos/${id}`).update(updates);
+
+    return todoRef.then(() => {
+      dispatch(updateTodo(id, updates));
+    });
+  };
 };

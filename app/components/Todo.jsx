@@ -19,7 +19,7 @@ export const Todo = React.createClass({
     return (
       <div className={todoClassName}>
         <label>
-          <input type="checkbox" checked={completed} onChange={ () => { {dispatch(actions.toggleTodo(id))} } } ref="completed"/>
+          <input type="checkbox" checked={completed} onChange={ () => { {dispatch(actions.startToggleTodo(id, !completed))} } } ref="completed"/>
           {count}. {text}
         </label>
         <small>{renderDate()}</small>

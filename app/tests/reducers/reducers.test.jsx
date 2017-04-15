@@ -52,24 +52,29 @@ describe('Reducers', () => {
       });
     });
 
-    it('should toggle todo', () => {
+    it('should update todo', () => {
       const todos = [
         {
           id: 1,
           text: 'Cut Bridge\'s balls',
-          completed: false,
-          completedAt: undefined,
+          completed: true,
+          completedAt: 123,
           createdAt: 40
         }
       ];
       const action = {
-        type: 'TOGGLE_TODO',
-        id: 1
+        type: 'UPDATE_TODO',
+        id: 1,
+        updates: {
+          completed: false,
+          completedAt: null
+        }
       };
 
       let res = reducers.todosReducer(df(todos), df(action));
-      expect(res[0].completed).toEqual(true);
-      expect(res[0].completedAt).toNotEqual(undefined);
+      expect(res[0].completed).toEqual(false);
+      expect(res[0].completedAt).toEqual(null);
+      expect(res[0].text).toEqual(todos[0].text);
     });
 
     it('should add existing todos', () => {
