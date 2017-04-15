@@ -96,4 +96,25 @@ describe('Reducers', () => {
       expect(res).toEqual(todos);
     })
   });
+
+  describe('authReducer', () => {
+    it('should save uid on LOGIN action', () => {
+      const action = {
+        type: 'LOGIN',
+        uid: 123
+      };
+
+      const res = reducers.authReducer({}, action);
+      expect(res).toEqual({uid: action.uid});
+    });
+
+    it('should return empty object on LOGOUT action', () => {
+      const action = {
+        type: 'LOGOUT'
+      };
+
+      const res = reducers.authReducer({uid: 123}, action);
+      expect(res).toEqual({});
+    });
+  });
 });

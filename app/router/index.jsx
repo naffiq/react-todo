@@ -6,14 +6,6 @@ import Login from 'Login';
 
 import firebase from 'app/firebase/';
 
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    hashHistory.push('/todos');
-  } else {
-    hashHistory.push('/');
-  }
-});
-
 const requireLogin = (nextState, replace, next) => {
   if (!firebase.auth().currentUser) {
     replace('/');

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
+import {hashHistory} from 'react-router';
 
 import TodoAPI from 'TodoAPI';
 
@@ -14,6 +15,16 @@ const store = configure();
 store.subscribe(() => {
   const state = store.getState();
   TodoAPI.setShowCompleted(state.showCompleted);
+});
+
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    store.dispatch(actions.login(user.uid));
+    hashHistory.push('/todos');
+  } else {
+    hashHistory.push('/');
+  }
 });
 
 const initialShowCompleted = TodoAPI.getShowCompleted();

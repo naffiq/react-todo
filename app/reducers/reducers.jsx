@@ -1,6 +1,3 @@
-import moment from 'moment';
-import uuid from 'uuid';
-
 export const searchTextReducer = (state = '', action) => {
   switch (action.type) {
     case 'SET_SEARCH_TEXT':
@@ -45,5 +42,19 @@ export const todosReducer = (state = [], action) => {
         ...action.todos
       ];
   }
+  return state;
+};
+
+export const authReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+      return {
+        uid: action.uid
+      };
+
+    case 'LOGOUT':
+      return {};
+  }
+
   return state;
 };
