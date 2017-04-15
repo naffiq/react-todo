@@ -20,10 +20,10 @@ export class Login extends Component {
             <div className="callout callout-auth">
               <h2>Login</h2>
               <p>
-                Login with GitHub account below.
+                Login with Twitter account below.
               </p>
               <button className="button" onClick={this.onLogin}>
-                Login with GitHub
+                Login with Twitter
               </button>
             </div>
           </div>

@@ -5,7 +5,7 @@ import TestUtils from 'react-addons-test-utils';
 import $ from 'jquery';
 import {Provider} from 'react-redux';
 
-import TodoApp from 'TodoApp';
+import {TodoApp} from 'TodoApp';
 import {configure} from 'configureStore';
 import TodoList from 'TodoList';
 
