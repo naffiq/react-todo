@@ -5,7 +5,9 @@ import Todo from 'Todo';
 
 export const TodoList = React.createClass({
   render: function () {
-    let {todos, showCompleted, searchText} = this.props;
+    let {showCompleted, searchText} = this.props;
+    let todos = TodoAPI.filterTodos(this.props.todos, showCompleted, searchText);
+
     let renderTodos = () => {
       if (todos.length === 0) {
         return (
@@ -13,7 +15,7 @@ export const TodoList = React.createClass({
         );
       }
 
-      return TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo, i) => {
+      return todos.map((todo, i) => {
         return <Todo { ...todo } count={i + 1} key={todo.id} />
       });
     };

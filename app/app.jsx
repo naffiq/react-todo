@@ -11,19 +11,15 @@ const store = configure();
 
 store.subscribe(() => {
   const state = store.getState();
-
-  TodoAPI.setTodos(state.todos);
   TodoAPI.setShowCompleted(state.showCompleted);
 });
 
 const initialShowCompleted = TodoAPI.getShowCompleted();
-const initialTodos = TodoAPI.getTodos();
-
 if (store.getState().showCompleted !== initialShowCompleted) {
   store.dispatch(actions.toggleShowCompleted());
 }
 
-store.dispatch(actions.addTodos(initialTodos));
+store.dispatch(actions.startAddTodos());
 
 $(document).foundation();
 

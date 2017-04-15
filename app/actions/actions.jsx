@@ -56,6 +56,32 @@ export const addTodos = (todos) => {
   }
 };
 
+export const startAddTodos = () => {
+  return (dispatch, getState) => {
+    const todosRef = firebaseRef.child('todos');
+
+    return todosRef.once('value').then((snapshot) => {
+      const snapshotValue = snapshot.val() || {};
+
+      const todos = Object.keys(snapshotValue).map((id) => {
+        let todo = snapshotValue[id];
+        return {
+          id,
+          ...todo
+        };
+      }) || [];
+
+      dispatch(addTodos(todos));
+    });
+  };
+};
+
+export const testAction = () => {
+  return (dispatch, getState) => {
+    dispatch({type: 'TEST'});
+  };
+};
+
 export const startToggleTodo = (id, completed) => {
   return (dispatch, getState) => {
     const updates = {
