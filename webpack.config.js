@@ -2,14 +2,17 @@ const webpack = require('webpack');
 const path = require('path');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+console.log(process.env.NODE_ENV);
 
 try {
+  console.log('env path', path.join(__dirname, 'config/' + process.env.NODE_ENV + '.env'));
   const envFile = require('dotenv').config({
     path: path.join(__dirname, 'config/' + process.env.NODE_ENV + '.env')
   });
 } catch (e) {
   console.log(':(');
 }
+
 
 module.exports = {
   entry: [

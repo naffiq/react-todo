@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import TodoAPI from 'TodoAPI';
-import TodoApp from 'TodoApp';
-import Login from 'Login';
+
+import router from 'app/router/';
 
 import * as actions from 'actions';
 import {configure} from 'configureStore';
+
 const store = configure();
 
 store.subscribe(() => {
@@ -27,14 +27,10 @@ $(document).foundation();
 
 require('style!css!sass!applicationStyles');
 
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={hashHistory}>
-      <Route path="/">
-        <IndexRoute component={Login} />
-        <Route path="todo" component={TodoApp} />
-      </Route>
-    </Router>
+    { router }
   </Provider>,
   document.getElementById('app')
 );
