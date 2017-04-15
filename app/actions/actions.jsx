@@ -104,10 +104,8 @@ export const startToggleTodo = (id, completed) => {
 export const startLogin = () => {
   return (dispatch, getState) => {
     firebase.auth().signInWithPopup(twitterProvider).then((result) => {
-      console.log('Auth worked!', result);
       dispatch(login(result.user.uid));
     }).catch((error) => {
-      console.log('Auth failed', error);
     });
   };
 };
@@ -115,8 +113,7 @@ export const startLogin = () => {
 export const startLogout = () => {
   return (dispatch, getState) => {
     return firebase.auth().signOut().then(() => {
-      console.log('Logout');
-      dispatch('logout');
+      dispatch(logout());
     });
   };
 };
