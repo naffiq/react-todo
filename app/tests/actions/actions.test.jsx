@@ -124,7 +124,7 @@ describe('Actions', () => {
         expect(mockActions[0].todos[0]).toEqual(todo);
 
         done();
-      }, done);
+      }).catch(done);
     });
 
     it('should toggle todo and dispatch UPDATE_TODO action', (done) => {
