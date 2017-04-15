@@ -1,10 +1,10 @@
 import moment from 'moment';
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
 
-export const Todo = React.createClass({
-  render: function () {
+export class Todo extends Component {
+  render () {
     let {id, count, text, completed, createdAt, completedAt, dispatch} = this.props;
 
     let renderDate = () => {
@@ -26,6 +26,6 @@ export const Todo = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default connect()(Todo);
