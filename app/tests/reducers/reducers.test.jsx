@@ -94,7 +94,25 @@ describe('Reducers', () => {
 
       let res = reducers.todosReducer(df([]), df(action));
       expect(res).toEqual(todos);
-    })
+    });
+
+    it('should remove todos on LOGOUT', () => {
+      const todos = [
+        {
+          id: 1,
+          text: 'Cut Bridge\'s balls',
+          completed: false,
+          completedAt: undefined,
+          createdAt: 40
+        }
+      ];
+      const action = {
+        type: 'LOGOUT'
+      };
+
+      const res = reducers.todosReducer(df(todos), df(action));
+      expect(res).toEqual([]);
+    });
   });
 
   describe('authReducer', () => {
